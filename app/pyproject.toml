@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "todo-api-strawberry"
+version = "0.1.0"
+description = ""
+authors = ["ricky2122 <rickyyyy2122@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+strawberry-graphql = {extras = ["debug-server"], version = "^0.235.1"}
+pytest = "^8.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

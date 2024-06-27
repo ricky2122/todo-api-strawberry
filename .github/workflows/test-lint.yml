@@ -10,7 +10,7 @@ on: # triger
 
 defaults:
   run:
-    working-derectory: app
+    working-directory: app
 
 jobs: # Define execution jobs
   test-and-lint:

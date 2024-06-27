@@ -10,7 +10,7 @@ on: # triger
 
 defaults:
   run:
-    working-directory: app
+    working-drectory: app
 
 jobs: # Define execution jobs
   test-and-lint:
@@ -31,7 +31,8 @@ jobs: # Define execution jobs
       run: |
         python -m pip install --upgrade pip
         pip install poetry
-        poetry install --no-root
+        poetry export -f requirements.txt --output requirements.txt --without-hashes
+        pip install -r requirements.txt
 
     - name: Run tests with pytest
       run: |

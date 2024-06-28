@@ -36,6 +36,7 @@ jobs: # Define execution jobs
 
     - name: Run tests with pytest
       run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
           pytest
 
     - name: Lint with ruff

@@ -10,40 +10,23 @@ class Query:
     @strawberry.field
     def todos(self) -> list[TodoType]:
         return [
-                TodoType(
-                    id=1,
-                    title="todo1",
-                    description="test1",
-                    completed=False
-                ),
-                TodoType(
-                    id=2,
-                    title="todo2",
-                    description="test2",
-                    completed=True
-                )
-                ]
+            TodoType(id=1, title="todo1", description="test1", completed=False),
+            TodoType(id=2, title="todo2", description="test2", completed=True),
+        ]
 
     @strawberry.field
     def todo(self, id: int) -> Optional[TodoType]:
-        return TodoType(
-                id=1,
-                title="todo1",
-                description="test1",
-                completed=False
-                )
+        return TodoType(id=1, title="todo1", description="test1", completed=False)
 
 
 @strawberry.type
 class Mutation:
     @strawberry.mutation
-    def create_todo(self,  todo: TodoInput) -> TodoType:
+    def create_todo(self, todo: TodoInput) -> TodoType:
+        completed = todo.completed if todo.completed is not None else True
         return TodoType(
-                id=1,
-                title=todo.title,
-                description=todo.description,
-                completed=todo.completed
-                )
+            id=1, title=todo.title, description=todo.description, completed=completed
+        )
 
     @strawberry.mutation
     def update_todo(self, id: int, todo: TodoUpdate) -> Optional[TodoType]:
@@ -51,11 +34,8 @@ class Mutation:
         description = todo.description if todo.description else "test1"
         completed = todo.completed if todo.completed is not None else True
         return TodoType(
-                id=id,
-                title=title,
-                description=description,
-                completed=completed
-                )
+            id=id, title=title, description=description, completed=completed
+        )
 
     @strawberry.mutation
     def delete_todo(self, id: int) -> bool:
